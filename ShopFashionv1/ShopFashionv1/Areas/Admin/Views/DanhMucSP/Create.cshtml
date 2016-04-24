@@ -1,0 +1,83 @@
+﻿@model Model.EF.DanhMucSP
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+
+<div class="row-fluid sortable">
+   <!--/span-->
+    <div class="box span6">
+        <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Thêm Mới Danh Mục Cha</h2>
+            <div class="box-icon">
+                <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+
+            @using (Html.BeginForm("Create", "DanhMucSP", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Tên Danh Mục</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.TenDanhMucSP, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button class="btn">Cancel</button>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div>
+     <div class="box span6">
+        <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Thêm Mới Danh Mục Con</h2>
+            <div class="box-icon">
+                <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+
+            @using (Html.BeginForm("Create", "DanhMucSP", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()                
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Tên Danh Mục</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.TenDanhMucSP, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Tên Danh Mục Cha</label>
+                        <div class="controls">
+                            @Html.DropDownListFor(model => model.MaDanhMucSPCha,null, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div><!--/span-->
+</div><!--/row-->
+
+
+
+

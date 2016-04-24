@@ -1,0 +1,77 @@
+﻿@model List<Model.EF.KhachHang>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+@section header
+{
+    Danh Sách Khách Hàng
+}
+@section jsfooter
+{
+<script src="/assets/admin/js/Controller/KhachHang.js"></script>
+<script src="/assets/admin/js/jquery.unobtrusive-ajax.js"></script>
+    }
+
+<div class="row-fluid sortable">
+    <div class="box span12">
+        <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white user"></i><span class="break"></span>Khách Hàng</h2>
+            <div class="box-icon">
+                <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                <thead>
+                    <tr>
+                        <th>Tên Khách Hàng</th>
+                        <th>Tài Khoản</th>
+                        <th>PassWord</th>
+                        <th>Địa Chỉ</th>
+                        <th>Email</th>
+                        <th>SĐT</th>
+                        <th>Trạng Thái</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.MaKhachHang">
+                            <td>@item.TenKhachHang</td>
+                            <td class="center">@item.TenDangNhap</td>
+                            <td class="center">@item.MatKhau</td>
+                            <td class="center">@item.DiaChi</td>
+                            <td class="center">@item.Email</td>
+                            <td class="center">@item.SoDienThoai</td>
+                           <td class="center">
+                               <a href="#" class="btn-active" data-id="@item.MaKhachHang"><span class="label @(item.PhanLoai? "label-success":"label-important")">@(item.PhanLoai? "Active":"Banned")</span></a>
+                           </td>
+                            <td class="center">
+                                <a class="btn btn-info" href="/Admin/KhachHang/Edit/@item.MaKhachHang">
+                                    <i class="halflings-icon white edit"></i>
+                                </a>
+                                @Ajax.ActionLink("Xóa", "Delete", new { @id = item.MaKhachHang }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có muốn xóa ?",
+                               OnComplete = "$('#row_" + item.MaKhachHang + "').remove()",
+                               HttpMethod = "Delete"
+                           }, new { @class = "btn btn-danger halflings-icon white trash" })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <a class="btn btn-info" href="/Admin/KhachHang/Create">
+
+                Thêm Mới
+
+            </a>
+        </div>
+    </div><!--/span-->
+
+</div>

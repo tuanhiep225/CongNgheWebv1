@@ -1,0 +1,81 @@
+﻿@model Model.EF.KhachHang
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+@section header
+{
+    Khách Hàng
+}
+<div class="row-fluid sortable">
+    <div class="box span6">
+        <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Thêm Mới</h2>
+            <div class="box-icon">
+                <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+
+            @using (Html.BeginForm("Create", "KhachHang", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", "error")
+
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Tên Khách Hàng</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.TenKhachHang, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Tài Khoản</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Địa Chỉ</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.DiaChi, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Email</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Số Điện Thoại</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.SoDienThoai, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">PassWord</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.MatKhau, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Phân Loại</label>
+                        <div class="controls">
+                            @Html.DropDownListFor(model => model.PhanLoai, new List<SelectListItem>{
+                                new SelectListItem() { Text = "Active",Value="true" },
+                                 new SelectListItem() { Text = "Banned", Value="false"}
+                                }, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Ceate</button>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div><!--/span-->
+</div>
+2>

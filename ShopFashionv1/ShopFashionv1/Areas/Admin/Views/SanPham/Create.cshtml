@@ -1,0 +1,90 @@
+﻿@model Model.EF.SanPham
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header
+{
+    tao moi san pham
+}
+@section jsfooter
+{
+    <script>
+        $('#uploadanh').on('click', function (e) {
+            e.preventDefault;
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#anh').val(url);
+            };
+            finder.popup();
+        })
+    </script>
+}
+@using (Html.BeginForm("Create", "SanPham", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="focusedInput">Tên Sản Phẩm</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.TenSP, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="focusedInput">Giá Sản Phẩm</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.GiaSP, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="focusedInput">Giá Khuyến Mãi</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.GiaKhuyenMai, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="focusedInput">Mô Tả</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.MoTa, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="focusedInput">Hình Ảnh</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.HinhAnhSP, new { @class = "input-xlarge focused", @id = "anh", @type = "text" })
+                <a id="uploadanh" href="#">Chọn Ảnh</a>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="focusedInput">Số Lượng</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.SoLuong, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="focusedInput">Mã Danh mục Sản Phẩm</label>
+            <div class="controls">
+                @Html.DropDownListFor(model => model.MaDanhMucSP,null, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="focusedInput">Mã Hãng</label>
+            <div class="controls">
+                @Html.DropDownListFor(model => model.MaHang,null, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="focusedInput">Mã Bộ Sưu Tập</label>
+            <div class="controls">
+                @Html.DropDownListFor(model => model.MaBST,null, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+    </fieldset>
+}

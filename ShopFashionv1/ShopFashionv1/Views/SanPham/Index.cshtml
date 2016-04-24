@@ -1,0 +1,92 @@
+﻿@model List<Model.EF.SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="content">
+    <div class="container">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/Home/">Trang chủ</a>
+                </li>
+                <li>
+                    Sản phẩm
+                </li>
+            </ul>
+        </div>
+        <!--/ Breadcrumb-->
+
+        <div class="col-md-9">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <div class="product">
+                            <div class="flip-container">
+                                <div class="flipper">
+                                    <div class="reveal">
+                                        <img src="@item.HinhAnhSP" width="450px" alt="" class="img-responsive">
+                                        <div class="hidden">
+                                            <div class="caption">
+                                                <div class="centered">
+                                                    <a href="product_detail.html">Xem chi tiết</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="detail.html">
+                                <img src="@item.HinhAnhSP" width="450px" alt="" class="img-responsive">
+                            </a>
+                            <div class="text">
+                                <h3><a href="#">@item.MoTa</a></h3>
+                                <p class="price">Giá tiền: @item.GiaSP.Value.ToString("N0") VNĐ</p>
+                    </div>
+                </div>
+            </div>
+                }
+
+            </div>
+            @if (ViewBag.TotalPage > 1)
+            {
+                var pageDisplay = (int)ViewBag.MaxPage;
+                int totalPage = (int)ViewBag.TotalPage;
+                int currentPage = ((int)ViewBag.Page);
+                var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+                var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+                <nav>
+                    <ul class="pagination">
+                        @if (currentPage > ViewBag.First)
+                        {
+                            <li><a href="/SanPham/Index?page=@ViewBag.First" title="Trang đầu" class="first"><i class="fa fa-angle-double-left"></i></a></li>
+                            <li>
+                                <a href="/SanPham/Index?page=@ViewBag.Prev" title="Trang trước" class="prev"><i class="fa fa-angle-left"></i></a>
+                            </li>
+
+                        }
+                        @for (int i = startPageIndex; i <= endPageIndex; i++)
+                        {
+                            if (currentPage == i)
+                            {
+                                <li> <a href="/SanPham/Index?page=@i" class="active" title="Trang @i">@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="/SanPham/Index?page=@i" title="Trang @i" class="pos">@i</a></li>
+                            }
+                        }
+                        @if (currentPage < totalPage)
+                        {
+                            <li><a href="/SanPham/Index?page=@ViewBag.Next" class="next" title="Trang sau"><i class="fa fa-angle-right"></i></a></li>
+                            <li> <a href="/SanPham/Index?page=@ViewBag.Last" class="last" title="Trang cuối"><i class="fa fa-angle-double-right"></i></a></li>
+                        }
+                    </ul>
+                </nav>
+
+            }
+        </div>
+        @{ Html.RenderAction("SideBarMenu", "SanPham");}
+        </div>
+    </div>

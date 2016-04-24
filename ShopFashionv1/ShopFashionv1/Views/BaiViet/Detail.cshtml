@@ -1,0 +1,43 @@
+﻿@model Model.EF.BaiViet
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="content">
+    <div class="container">
+        <!-- Breadcrumb-->
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="index.html">Trang chủ</a>
+                </li>
+                <li>
+                    Bài viết
+                </li>
+            </ul>
+        </div>
+        <!--/ Breadcrumb-->
+
+        <div class="col-md-9">
+            <div id="blog-post">
+                <div class="box">
+                    <h1>@Model.TieuDe</h1>
+                    <p class="author-date">Ngày đăng: @Model.NgayDangBaiViet</p>
+                    <p class="lead">@Model.MoTa</p>
+
+                    <div id="post-content">
+                        @Html.Raw(Model.NoiDung)
+
+                        <blockquote>
+                            <p><i>Mọi bài viết lấy thông tin từ <strong>Stylitic.com</strong> xin vui lòng ghi rõ nguồn!</i></p>
+                        </blockquote>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @{ Html.RenderAction("MenuBaiViet", "BaiViet");}
+    </div>
+
+</div>

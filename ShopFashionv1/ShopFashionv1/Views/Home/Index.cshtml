@@ -1,0 +1,208 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = (List < Model.EF.SanPham >)ViewBag.listnewsp;
+    var listbv= (List<Model.EF.BaiViet>)ViewBag.listbaiviet;
+}
+<div id="content">
+
+    <div class="container">
+        <div class="col-md-12">
+            <div id="main-slider">
+                <div class="item">
+                    <img src="/assets/client/img/slider1.jpg" alt="" class="img-responsive">
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="/assets/client/img/slider2.jpg" alt="">
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="/assets/client/img/slider3.jpg" alt="">
+                </div>
+            </div>
+            <!-- /#main-slider -->
+        </div>
+    </div>
+
+    <!-- *** ADVANTAGES HOMEPAGE ***
+    _________________________________________________________ -->
+    <div id="advantages">
+
+        <div class="container">
+            <div class="same-height-row">
+                <div class="col-sm-4">
+                    <div class="box same-height clickable">
+                        <div class="icon">
+                            <i class="fa fa-heart"></i>
+                        </div>
+
+                        <h3><a href="#">CHẤT LƯỢNG DỊCH VỤ CAO</a></h3>
+                        <p>Dịch vụ chăm sóc khách hàng uy tín</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="box same-height clickable">
+                        <div class="icon">
+                            <i class="fa fa-tags"></i>
+                        </div>
+
+                        <h3><a href="#">GIÁ CẢ TỐT NHẤT</a></h3>
+                        <p>Giá cả của chúng tôi luôn đem lại sự hài lòng lớn nhất cho khách hàng</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="box same-height clickable">
+                        <div class="icon">
+                            <i class="fa fa-thumbs-up"></i>
+                        </div>
+
+                        <h3><a href="#">THANH TOÁN THUẬN TIỆN</a></h3>
+                        <p>Chuyển khoản hoặc thanh toán khi nhận hàng</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /#advantages -->
+    <!-- *** ADVANTAGES END *** -->
+    <!-- *** HOT PRODUCT SLIDESHOW ***
+    _________________________________________________________ -->
+    <div id="hot">
+
+        <div class="box">
+            <div class="container">
+                <div class="col-md-12">
+                    <h2>Sản phẩm mới</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="product-slider">
+                @foreach (var item in list)
+                {
+                    <div class="item">
+                        <div class="product">
+                            <div class="flip-container">
+                                <div class="flipper">
+                                    <div class="reveal">
+                                        <img src="@item.HinhAnhSP" width="450" height="500" alt="" class="img-responsive">
+                                        <div class="hidden">
+                                            <div class="caption">
+                                                <div class="centered">
+                                                    <a href="/SanPham/Detail/@item.MaSP">Xem chi tiết</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/SanPham/Detail/@item.MaSP" class="invisible">
+                                <img src="@item.HinhAnhSP" alt="" class="img-responsive">
+                            </a>
+                            <div class="text">
+                                <h3><a href="/SanPham/Detail/@item.MaSP">@item.MoTa</a></h3>
+                                <p class="price">Giá tiền:<br>@item.GiaKhuyenMai.Value.ToString("N0") VNĐ</p>
+                            </div>
+                            <!-- /.text -->
+                            <div class="ribbon new">
+                                <div class="theribbon">MỚI</div>
+                                <div class="ribbon-background"></div>
+                            </div>
+                        </div>
+                        <!-- /.product -->
+                    </div>
+                }
+
+                
+
+                
+            </div>
+            <!-- /.product-slider -->
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /#hot -->
+    <!-- *** HOT END *** -->
+    <!-- *** GET INSPIRED ***
+    _________________________________________________________ -->
+    <div class="container" data-animate="fadeInUpBig">
+        <div class="col-md-12">
+            <div class="box slideshow">
+                <h3>CẢM HỨNG SÁNG TẠO</h3>
+                <p class="lead">Sản phẩm được truyền cảm hứng từ những nhà thiết kế hàng đầu</p>
+                <div id="get-inspired" class="owl-carousel owl-theme">
+                    <div class="item">
+                        <a href="#">
+                            <img src="/assets/client/img/get_inspired_1.jpg" alt="Get inspired" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img src="/assets/client/img/get_inspired_2.jpg" alt="Get inspired" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img src="/assets/client/img/get_inspired_3.jpg" alt="Get inspired" class="img-responsive">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- *** GET INSPIRED END *** -->
+    <!-- *** BLOG HOMEPAGE ***
+    _________________________________________________________ -->
+
+    <div class="box text-center" data-animate="fadeInUp">
+        <div class="container">
+            <div class="col-md-12">
+                <h3 class="text-uppercase">XU HƯỚNG THỜI TRANG</h3>
+
+                <p class="lead">
+                    Luôn cập nhật những xu hướng thời trang mới nhất <a href="blog.html" style="text-decoration:none">Xem những bài viết!</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="col-md-12" data-animate="fadeInUp">
+
+            <div id="blog-homepage" class="row">
+                @foreach (var item in listbv)
+                {
+                    <div class="col-sm-6">
+                        <div class="post">
+                            <h4><a href="post.html">@item.TieuDe</a></h4>
+                            <p class="author-category">Ngày đăng: @item.NgayDangBaiViet</p>
+                            <hr>
+                            <p class="intro">
+                                @item.MoTa
+                            </p>
+                            <p class="read-more">
+                                <a href="/BaiViet/Detail/@item.MaBaiViet" class="btn btn-primary">Đọc tiếp</a>
+                            </p>
+                        </div>
+                    </div>
+                }
+                
+
+
+            </div>
+            <!-- /#blog-homepage -->
+        </div>
+    </div>
+    <!-- /.container -->
+    <!-- *** BLOG HOMEPAGE END *** -->
+
+
+</div>

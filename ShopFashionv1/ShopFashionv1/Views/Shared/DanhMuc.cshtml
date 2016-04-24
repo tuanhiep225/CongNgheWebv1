@@ -1,0 +1,46 @@
+﻿@model List<Model.EF.DanhMucSP>
+@{
+    var dao =(Model.Dao.DanhMucSPDao)ViewBag.dao;
+}
+<div class="navbar-collapse collapse" id="navigation">
+
+    <ul class="nav navbar-nav navbar-left">
+        <li class="active">
+            <a href="/Home/Index">Trang chủ</a>
+        </li>
+        @foreach (var item in Model)
+        {
+            <li class="dropdown yamm-fw">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">@item.TenDanhMucSP</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="yamm-content">
+                            <ul>
+                                @foreach (var item1 in dao.getByIdParent(item.MaDanhMucSP))
+                                {
+                                    <li>
+                                        <a href="/SanPham/Category/@item1.MaDanhMucSP">@item1.TenDanhMucSP</a>
+                                    </li>
+                                }
+                                
+                            </ul>
+                        </div>
+                        <!-- /.yamm-content -->
+                    </li>
+                </ul>
+            </li>
+        }
+        
+
+        
+
+        <li id="blog" class="dropdown yamm-fw">
+            <a href="/BaiViet/" data-hover="dropdown" data-delay="200">Bài viết </a>
+        </li>
+
+        <li id="contact" class="dropdown yamm-fw">
+            <a href="#" data-hover="dropdown" data-delay="200">Liên hệ </a>
+        </li>
+    </ul>
+
+</div>

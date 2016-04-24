@@ -1,0 +1,73 @@
+﻿@model Model.EF.QuanTriVien
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header
+{
+    Thêm Mới
+}
+<div class="row-fluid sortable">
+    <div class="box span12">
+        <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Thêm Mới</h2>
+            <div class="box-icon">
+                <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+            
+            @using (Html.BeginForm("Create", "QuanTri", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="focusedInput">Tên Admin</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.TenAdmin, new {@class="input-xlarge focused", @id="focusedInput", @type="text" })
+                            @Html.ValidationMessage("TenAdmin");
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="focusedInput">Email</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="focusedInput">Tên Đăng Nhập</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.TaiKhoan, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="focusedInput">Mật Khẩu</label>
+                        <div class="controls">
+                           @Html.TextBoxFor(model => model.MatKhau, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "password" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="focusedInput">Phan Loai</label>
+                        <div class="controls">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.PhanLoai)
+                                @Html.ValidationMessageFor(model => model.PhanLoai)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button class="btn">Cancel</button>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div><!--/span-->
+
+</div><!--/row-->

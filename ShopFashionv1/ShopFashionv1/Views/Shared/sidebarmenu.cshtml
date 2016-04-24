@@ -1,0 +1,35 @@
+﻿@model List<Model.EF.DanhMucSP>
+    @{
+        var dao = (Model.Dao.DanhMucSPDao)ViewBag.dao;
+    }
+<div class="col-md-3">
+    <div class="panel panel-default sidebar-menu">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">Danh mục sản phẩm</h3>
+        </div>
+
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked category-menu">
+                @foreach (var item in Model)
+                {
+                    <li class="active">
+                        <a href="#">@item.TenDanhMucSP</a>
+                        <ul>
+                            @foreach (var item1 in dao.getByIdParent(item.MaDanhMucSP))
+                            {
+                                <li><a href="/SanPham/Category/@item1.MaDanhMucSP">@item1.TenDanhMucSP</a></li>
+                            }
+                            
+                        </ul>
+                    </li>
+                }
+                
+             
+               
+
+            </ul>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model Model.EF.BaiViet
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+@section header
+{
+    Sửa Bài Viết
+    }
+<div class="row-fluid sortable">
+    <div class="box span10">
+        <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Sửa</h2>
+            <div class="box-icon">
+                <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+
+            @using (Html.BeginForm("Edit", "BaiViet", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model=>model.MaBaiViet)
+                @Html.HiddenFor(model=>model.NgayDangBaiViet)
+                @Html.ValidationSummary(false, "", "error")
+
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Tiêu Đề</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.TieuDe, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Hình Ảnh</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.HinhAnhBaiViet, new { @class = "input-xlarge focused", @id = "anh", @type = "text" })
+                            <a href="#" id="uploadanh">Chọn Ảnh</a>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Nội Dung</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.NoiDung, new { @class = "cleditor", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="disabledInput">Mô Tả</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.MoTa, new { @class = "input-xlarge focused", @id = "focusedInput", @type = "text" })
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div><!--/span-->
+</div>

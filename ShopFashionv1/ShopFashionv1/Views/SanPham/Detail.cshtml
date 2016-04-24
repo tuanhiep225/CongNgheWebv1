@@ -1,0 +1,147 @@
+﻿@model Model.EF.SanPham
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="content">
+    <div class="container">
+        <!-- Breadcrumb-->
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="index.html">Trang chủ</a>
+                </li>
+                <li>
+                    Sản phẩm
+                </li>
+            </ul>
+        </div>
+        <!--/ Breadcrumb-->
+
+        <div class="col-md-9">
+            <div class="row" id="productMain">
+                <div class="col-sm-6">
+                    <div id="mainImage">
+                        <img src="@Model.HinhAnhSP" alt="" class="img-responsive">
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="box">
+                        <h1 class="text-center">@Model.TenSP</h1>
+                        <p class="price">Giá tiền: <span style="text-decoration: line-through">@Model.GiaSP.Value.ToString("N0") VNĐ</span></p>
+                        <p class="price">Khuyến mãi:@Model.GiaKhuyenMai.Value.ToString("N0") VNĐ</p>
+                        <table>
+                            <tr>
+                                <td><label>Màu sắc: </label></td>
+                                <td>
+                                    <select class="form-control" id="color" name="color">
+                                        <option> Đỏ</option>
+                                        <option> Vàng</option>
+                                        <option> Xanh</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Kích thước: </label></td>
+                                <td>
+                                    <select class="form-control" id="size" name="size">
+                                        <option> S</option>
+                                        <option> M</option>
+                                        <option> L</option>
+                                        <option> XL</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr><td></td><td></td></tr>
+                        </table>
+                        <p style="margin-top:20px;" class="text-center buttons">
+                            <a href="order.html" onClick="buy($id)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                        </p>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="@Model.HinhAnhSP" class="thumb">
+                            <img src="@Model.HinhAnhSP" alt="" class="img-responsive">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="box" id="details"
+                 <p>
+                 <h4>Chi tiết sản phẩm</h4>
+                 <p>Shorts INFA W. NEED. basic blank rollup.</p>
+                 <h4>Màu sắc</h4>
+                 <h4>Kích cỡ</h4>
+
+                 <blockquote>
+                            <p>Mọi thắc mắc về sản phẩm xin liên hệ: </p>
+                            <p>Hotline: 098 345 4030</p>
+                            <p>Giờ làm việc: 8h - 21h thứ 2 đến thứ 6; 8h - 17h thứ 7, chủ nhật
+                         </blockquote>
+                 <hr>
+
+               	<h4>Bình luận</h4>
+                <div id="comments" data-animate="fadeInUp">
+
+                    <div class="row comment">
+                        <div class="col-sm-3 col-md-2 text-center-xs">
+                            <p>
+                                <img src="img/icon-profile.jpg" class="img-responsive img-circle">
+                            </p>
+                        </div>
+                        <div class="col-sm-9 col-md-10">
+                            <h5>Chi Pu</h5>
+                            <p class="posted"><i class="fa fa-clock-o"></i>  Ngày gửi: 2016-01-14</p>
+                            <p>cái quần này mới đẹp làm sao !</p>
+                        </div>
+                    </div>
+
+                <div id="comment-form" data-animate="fadeInUp">
+
+                    <h4>Để lại bình luận</h4>
+
+                    <form method="post">
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="name">Họ tên <span class="required">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="comment">Bình luận <span class="required">*</span>
+                                    </label>
+                                    <textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <button class="btn btn-primary" name="btnSend"><i class="fa fa-comment-o"></i> Gửi bình luận</button>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+                    
+                </div>
+                </div>
+            
+        </div>
+
+        @{ Html.RenderAction("SideBarMenu", "SanPham");}
+    </div>
+
+</div>
